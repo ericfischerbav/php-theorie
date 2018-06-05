@@ -12,11 +12,9 @@ class Benutzer {
 	/*
 	* Der Konstruktor wird immer aufgerufen, wenn ein Objekt erstellt wird.
 	* Der Standard-Konstruktor enthält keine Parameter, andere können
-	* Parameter enthalten.
+	* Parameter enthalten. Eine Überladung ist in PHP anscheinend nicht möglich.
 	*/
-	public __construct() {}
-	
-	public __construct($name) {
+	public function __construct($name = "") {
 		$this->name = $name;
 	}
 	
@@ -35,6 +33,13 @@ class Benutzer {
 	public function set_passwort($passwort) {
 		$hash = md5($passwort);
 		$this->passwort = $hash;
+	}
+	
+	public function benutzer_speichern() {
+	    $connection = mysqli_connect("localhost", "root", "", "tutorium");
+	    $insert = "INSERT INTO benutzer (name, pw) VALUES ('".$this->name."', '".$this->passwort."')";
+	    $result = mysqli_query($connection, $insert);
+	    return $result;
 	}
 }
 
