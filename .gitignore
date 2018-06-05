@@ -1,0 +1,8 @@
+# whitelisting
+*
+
+# allwoing folders
+!*/
+
+# allowing PHP scripts
+!*.php
